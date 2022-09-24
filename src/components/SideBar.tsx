@@ -3,6 +3,7 @@ import {Box, Text} from "rebass";
 
 import {ProductContext} from "../Context";
 
+import Filter from "./Filter";
 import Menu from "./Menu";
 
 export default function SideBar() {
@@ -16,6 +17,7 @@ export default function SideBar() {
           Categoria: <span style={{fontWeight: "bold"}}>{selectedCategory.name}</span>
         </Text>
       )}
+      <Filter />
     </Box>
   );
 }

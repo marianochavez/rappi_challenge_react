@@ -1,9 +1,10 @@
-import {Category, Product} from "./ProductContext";
+import {Category, Filters, Product} from "./ProductContext";
 import {ProductState} from "./ProductProvider";
 
 type ProductActionType =
   | {type: "Product - Set Category"; payload: Category | null}
-  | {type: "Product - Set Products"; payload: Product[]};
+  | {type: "Product - Set Products"; payload: Product[]}
+  | {type: "Product - Set Filters"; payload: Filters};
 
 export const productReducer = (state: ProductState, action: ProductActionType): ProductState => {
   switch (action.type) {
@@ -16,6 +17,11 @@ export const productReducer = (state: ProductState, action: ProductActionType): 
       return {
         ...state,
         products: action.payload,
+      };
+    case "Product - Set Filters":
+      return {
+        ...state,
+        filters: action.payload,
       };
 
     default:

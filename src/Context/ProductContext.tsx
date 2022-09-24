@@ -15,11 +15,22 @@ export type Product = {
   id: string;
 };
 
+export type Filters = {
+  avaible: boolean;
+  minPrice: number;
+  maxPrice: number;
+  quantity: number;
+};
+
 interface ContextProps {
   products: Product[];
+
   categories: Category[];
   selectedCategory: Category | null;
   setCategory: (category: Category | null) => void;
+
+  filters: Filters;
+  setFilters(newFilters: Filters): void;
 }
 
 export const ProductContext = createContext({} as ContextProps);

@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {memo, useState} from "react";
 import {Box, Button, Flex, Text} from "rebass";
 
 import {Category} from "../Context";
@@ -52,7 +52,7 @@ function MenuItem({category, onClick}: MenuItemProps) {
   );
 }
 
-export default function Menu({categories, onCategoryClick, style}: MenuProps) {
+function Menu({categories, onCategoryClick, style}: MenuProps) {
   return (
     <Box style={style}>
       {categories.map((category) => (
@@ -61,3 +61,8 @@ export default function Menu({categories, onCategoryClick, style}: MenuProps) {
     </Box>
   );
 }
+
+export default memo(
+  Menu,
+  (prevValues, nextValues) => prevValues.categories === nextValues.categories,
+);
