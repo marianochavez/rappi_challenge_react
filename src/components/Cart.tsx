@@ -1,34 +1,43 @@
-import {useState} from "react";
+import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import {Box} from "rebass";
 
-import {CartItem, Product} from "../App";
+import {Product, ProductContext} from "../Context";
 
-import CardProduct from "./CardProduct";
+import CardProduct from "./CartItem";
 
-type CartProps = {
-  products: Product[];
+export type CartItem = {
+  product: Product;
+  quantity: number;
 };
 
-function Cart({products}: CartProps) {
+type CartProps = {};
+
+function Cart({}: CartProps) {
+  const {products} = useContext(ProductContext);
   const [cart, setCart] = useState<Map<Product["id"], CartItem>>(
     () => new Map<Product["id"], CartItem>(),
   );
+  const cartRef: React.MutableRefObject<Map<Product["id"], CartItem> | undefined> = useRef();
 
-  function handleIncrement(product: Product) {
-    const draft: Map<Product["id"], CartItem> = structuredClone(cart);
+  useEffect(() => {
+    cartRef.current = cart;
+  }, [cart]);
+
+  const handleIncrement = useCallback((product: Product) => {
+    const draft: Map<Product["id"], CartItem> = structuredClone(cartRef.current);
     const item = draft.get(product.id);
 
     if (item) {
       item.quantity += 1;
     } else {
-      draft.set(product.id, {quantity: 1, product} as CartItem);
+      draft.set(product.id, {product, quantity: 1} as CartItem);
     }
 
     setCart(draft);
-  }
+  }, []);
 
-  function handleDecrement(product: Product) {
-    const draft: Map<Product["id"], CartItem> = structuredClone(cart);
+  const handleDecrement = useCallback((product: Product) => {
+    const draft: Map<Product["id"], CartItem> = structuredClone(cartRef.current);
     const item = draft.get(product.id);
 
     if (item) {
@@ -40,7 +49,7 @@ function Cart({products}: CartProps) {
     }
 
     setCart(draft);
-  }
+  }, []);
 
   return (
     <Box
@@ -48,6 +57,7 @@ function Cart({products}: CartProps) {
         display: "grid",
         gap: 3,
         gridTemplateColumns: "repeat(4,1fr)",
+        marginLeft: "200px",
       }}
     >
       {products.map((product) => {

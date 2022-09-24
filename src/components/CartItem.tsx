@@ -1,20 +1,18 @@
+import {memo} from "react";
 import {Box, Button, Flex, Text} from "rebass";
 
-import {CartItem, Product} from "../App";
+import {Product} from "../Context";
 
-type CardProductProps = {
+import {CartItem} from "./Cart";
+
+type CardItemProps = {
   product: Product;
   cart: Map<Product["id"], CartItem>;
   handleIncrement: (product: Product) => void;
   handleDecrement: (product: Product) => void;
 };
 
-export default function CardProduct({
-  product,
-  cart,
-  handleIncrement,
-  handleDecrement,
-}: CardProductProps) {
+function CardItem({product, cart, handleIncrement, handleDecrement}: CardItemProps) {
   const item = cart.get(product.id);
 
   return (
@@ -35,3 +33,10 @@ export default function CardProduct({
     </Box>
   );
 }
+
+export default memo(
+  CardItem,
+  (preValues, nextValues) =>
+    preValues.cart.get(nextValues.product.id)?.quantity ===
+    nextValues.cart.get(nextValues.product.id)?.quantity,
+);
