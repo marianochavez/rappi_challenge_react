@@ -1,7 +1,7 @@
 import {memo} from "react";
 import {Box, Button, Flex, Text} from "rebass";
 
-import {Product} from "../Context";
+import {Product} from "../context";
 
 import {CartItem} from "./Cart";
 

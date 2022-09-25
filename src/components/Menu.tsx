@@ -1,7 +1,7 @@
 import {memo, useState} from "react";
 import {Box, Button, Flex, Text} from "rebass";
 
-import {Category} from "../Context";
+import {Category} from "../context";
 
 type MenuProps = {
   categories: Category[];

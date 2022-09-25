@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {Box, Button, Flex, Text} from "rebass";
 
-import {ProductContext, Sorters} from "../Context";
+import {ProductContext, Sorters} from "../context";
 
 const SortBar = () => {
   const {sorters, setSorters} = useContext(ProductContext);

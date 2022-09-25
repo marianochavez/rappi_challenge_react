@@ -1,7 +1,7 @@
 import {useCallback, useContext, useEffect, useRef, useState} from "react";
 import {Box, Flex, Text} from "rebass";
 
-import {Product, ProductContext} from "../Context";
+import {Product, ProductContext} from "../context";
 
 import CardProduct from "./CartItem";
 import CartModal from "./CartModal";

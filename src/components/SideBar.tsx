@@ -1,7 +1,7 @@
 import {useContext} from "react";
 import {Box, Text} from "rebass";
 
-import {ProductContext} from "../Context";
+import {ProductContext} from "../context";
 
 import Filter from "./Filter";
 import Menu from "./Menu";

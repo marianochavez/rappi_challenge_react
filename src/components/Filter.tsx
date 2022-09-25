@@ -2,7 +2,7 @@ import {Box, Flex} from "rebass";
 import {Input, Label, Slider} from "@rebass/forms";
 import React, {useContext} from "react";
 
-import {ProductContext} from "../Context";
+import {ProductContext} from "../context";
 
 const Filter = () => {
   const {filters, setFilters} = useContext(ProductContext);
