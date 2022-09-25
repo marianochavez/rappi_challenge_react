@@ -11,7 +11,7 @@ const Filter = () => {
     const filterName = event.target.name;
     let value;
 
-    if (filterName === "avaible") {
+    if (filterName === "available") {
       value = event.target.checked;
     } else {
       value = event.target.value;
@@ -28,9 +28,9 @@ const Filter = () => {
         <Box>
           <Label>Disponibilidad</Label>
           <input
-            checked={filters.avaible}
-            id="avaible"
-            name="avaible"
+            checked={filters.available}
+            id="available"
+            name="available"
             type="checkbox"
             onChange={handleFilter}
           />

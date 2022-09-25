@@ -21,11 +21,14 @@ function CardItem({product, cart, handleIncrement, handleDecrement}: CardItemPro
         {product.name}
       </Text>
       <Text p={1}>{product.price}</Text>
-      <Flex alignItems="center" style={{gap: 3}}>
+      <Text p={1}>{product.available ? "Disponible" : "No disponible"}</Text>
+      <Text p={1}>Stock: {product.quantity}</Text>
+      <Flex alignItems="center" p={1} style={{gap: 3}}>
         <Button bg="gray" color="white" p={1} px={2} onClick={() => handleDecrement(product)}>
           -
         </Button>
         {item?.quantity || 0}
+
         <Button bg="gray" color="white" p={1} px={2} onClick={() => handleIncrement(product)}>
           +
         </Button>

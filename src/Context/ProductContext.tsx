@@ -16,10 +16,16 @@ export type Product = {
 };
 
 export type Filters = {
-  avaible: boolean;
+  available: boolean;
   minPrice: number;
   maxPrice: number;
   quantity: number;
+};
+
+export type Sorters = {
+  available: boolean;
+  price: boolean;
+  quantity: boolean;
 };
 
 interface ContextProps {
@@ -31,6 +37,9 @@ interface ContextProps {
 
   filters: Filters;
   setFilters(newFilters: Filters): void;
+
+  sorters: Sorters;
+  setSorters: (newSorters: Sorters) => void;
 }
 
 export const ProductContext = createContext({} as ContextProps);
